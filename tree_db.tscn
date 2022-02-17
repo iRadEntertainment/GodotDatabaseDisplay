@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://tree_db.gd" type="Script" id=1]
+[ext_resource path="res://UbuntuMono-B.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 18
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[node name="tree_db" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="vb" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="top" type="PanelContainer" parent="vb"]
+margin_right = 1024.0
+margin_bottom = 43.0
+
+[node name="hb" type="HBoxContainer" parent="vb/top"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 36.0
+
+[node name="title" type="Label" parent="vb/top/hb"]
+margin_right = 840.0
+margin_bottom = 29.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "DB title"
+align = 1
+valign = 1
+
+[node name="column_selector" type="SpinBox" parent="vb/top/hb"]
+margin_left = 844.0
+margin_right = 978.0
+margin_bottom = 29.0
+min_value = 2.0
+max_value = 25.0
+value = 3.0
+suffix = "columns"
+
+[node name="btn_hide" type="Button" parent="vb/top/hb"]
+margin_left = 982.0
+margin_right = 1010.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 28, 28 )
+focus_mode = 0
+
+[node name="mid" type="Control" parent="vb"]
+margin_top = 47.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="text_display" type="RichTextLabel" parent="vb/mid"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="tree_display" type="Tree" parent="vb/mid"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="value_changed" from="vb/top/hb/column_selector" to="." method="_on_column_selector_value_changed"]
+[connection signal="pressed" from="vb/top/hb/btn_hide" to="." method="_on_btn_hide_pressed"]
